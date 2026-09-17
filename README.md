@@ -29,3 +29,4 @@
 
 ФИО: Певкин Юрий Алексеевич 
 Группа: ЭФБО-09-25
+GitHub Pages: https://yurockhaaa.github.io/kr1-html-css-shop/
