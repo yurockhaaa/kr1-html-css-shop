@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Подробная карточка товара: описание, характеристики и цена.">
+  <meta name="description" content="Карточка товара учебного интернет-магазина: описание, характеристики и цена.">
   <title>Товар 1 — Учебный интернет-магазин</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -21,7 +21,7 @@
             <a class="site-nav__link" href="catalog.html">Каталог</a>
           </li>
           <li class="site-nav__item">
-            <a class="site-nav__link site-nav__link--active" href="product.html" aria-current="page">Товар</a>
+            <a class="site-nav__link site-nav__link--active" href="product.html">Товар</a>
           </li>
           <li class="site-nav__item">
             <a class="site-nav__link" href="order.html">Заявка</a>
@@ -46,54 +46,40 @@
   <main>
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
       <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__separator">/</span>
-      <a class="breadcrumbs__link" href="catalog.html">Каталог</a>
       <span class="breadcrumbs__current">Товар 1</span>
     </nav>
 
-    <article class="section product-details">
-      <img
-        class="product-details__image"
-        src="images/product.svg"
-        alt="Изображение учебного товара"
-        width="600"
-        height="450"
-      >
-
-      <div class="product-details__info">
-        <h1 class="product-details__title">Товар 1</h1>
-        <p>
-          Подробное описание учебного товара. Здесь рассказывается о назначении
-          товара, его особенностях и преимуществах для покупателя.
-        </p>
-        <p class="product-details__price">1000 руб.</p>
-        <a class="button button--primary" href="order.html">Оформить заявку</a>
-      </div>
-    </article>
+    <section class="section">
+      <h1>Товар 1</h1>
+      <img src="images/product.svg" alt="Изображение товара" width="400" height="300">
+      <p>Подробное описание учебного товара.</p>
+      <p>Цена: 1000 руб.</p>
+      <a class="button button--primary" href="order.html">Оформить заявку</a>
+    </section>
 
     <section class="section">
-      <h2 class="section__title">Характеристики</h2>
+      <h2>Характеристики</h2>
 
       <table class="product-table">
-        <caption class="product-table__caption">Характеристики товара</caption>
+        <caption>Характеристики товара</caption>
         <thead>
           <tr>
-            <th class="product-table__head-cell" scope="col">Параметр</th>
-            <th class="product-table__head-cell" scope="col">Значение</th>
+            <th>Параметр</th>
+            <th>Значение</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="product-table__cell">Категория</td>
-            <td class="product-table__cell">Учебный товар</td>
+            <td>Категория</td>
+            <td>Учебный товар</td>
           </tr>
           <tr>
-            <td class="product-table__cell">Цена</td>
-            <td class="product-table__cell">1000 руб.</td>
+            <td>Цена</td>
+            <td>1000 руб.</td>
           </tr>
           <tr>
-            <td class="product-table__cell">Наличие</td>
-            <td class="product-table__cell">В наличии</td>
+            <td>Наличие</td>
+            <td>В наличии</td>
           </tr>
         </tbody>
       </table>
@@ -101,10 +87,8 @@
   </main>
 
   <footer class="site-footer">
-    <div class="site-footer__inner">
-      <p>&copy; 2026 Учебный проект. Все права защищены.</p>
-      <p>Дисциплина: Фронтенд и бэкенд разработка</p>
-    </div>
+    <p>&copy; 2026 Учебный проект. Все права защищены.</p>
+    <p>Дисциплина: Фронтенд и бэкенд разработка</p>
   </footer>
 
   <a class="button button--primary to-top" href="#">Наверх</a>

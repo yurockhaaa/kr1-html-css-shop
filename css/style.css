@@ -16,7 +16,6 @@
   --color-success: #168a2f;
   --color-success-bg: #eefaf0;
   --color-white: #ffffff;
-  --color-overlay: rgba(0, 0, 0, 0.5);
 
   /* Отступы */
   --space-xs: 4px;
@@ -32,27 +31,16 @@
 
   /* Размеры */
   --container-width: 1100px;
-
-  /* Слои (z-index) */
-  --z-sticky: 10;
-  --z-fixed: 20;
 }
 
 /* ===============================
    2. Базовые стили
    =============================== */
 
-/*
-  border-box делает расчёт размеров более понятным:
-  width включает content, padding и border.
-*/
 * {
   box-sizing: border-box;
 }
 
-/*
-  Плавная прокрутка к якорям.
-*/
 html {
   scroll-behavior: smooth;
 }
@@ -69,14 +57,6 @@ main {
   padding: var(--space-lg);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/*
-  Подсветка элемента, к которому выполнен переход по якорю.
-*/
 :target {
   outline: 2px dashed var(--color-primary);
   outline-offset: 4px;
@@ -99,14 +79,10 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-/*
-  Кнопка — самостоятельный БЭМ-блок.
-  Используется и для button, и для ссылок a.
-*/
 .button {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
-  border: 1px solid transparent;
+  border: none;
   border-radius: var(--radius-sm);
   font: inherit;
   text-decoration: none;
@@ -118,6 +94,10 @@ a:focus-visible {
   background-color: var(--color-primary);
 }
 
+/*
+  color задаётся явно: иначе у ссылок-кнопок при наведении
+  срабатывает правило a:hover и текст сливается с фоном.
+*/
 .button--primary:hover {
   color: var(--color-white);
   background-color: var(--color-primary-dark);
@@ -126,7 +106,7 @@ a:focus-visible {
 .button--secondary {
   color: var(--color-primary);
   background-color: transparent;
-  border-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
 }
 
 .button--secondary:hover {
@@ -149,7 +129,7 @@ a:focus-visible {
    4. Компоненты страницы
    =============================== */
 
-/* --- Шапка сайта --- */
+/* Шапка сайта */
 
 .site-header {
   background-color: var(--color-surface);
@@ -167,7 +147,7 @@ a:focus-visible {
   text-decoration: none;
 }
 
-/* --- Основная навигация (Flexbox) --- */
+/* Основная навигация */
 
 .site-nav__list {
   display: flex;
@@ -203,7 +183,7 @@ a:focus-visible {
   background-color: var(--color-primary);
 }
 
-/* --- Хлебные крошки --- */
+/* Хлебные крошки */
 
 .breadcrumbs {
   max-width: var(--container-width);
@@ -221,11 +201,7 @@ a:focus-visible {
   color: var(--color-muted);
 }
 
-.breadcrumbs__separator {
-  color: var(--color-muted);
-}
-
-/* --- Hero-блок --- */
+/* Hero-блок */
 
 .hero {
   max-width: var(--container-width);
@@ -235,22 +211,18 @@ a:focus-visible {
   border-radius: var(--radius-lg);
 }
 
-.hero__title {
-  margin-top: 0;
-}
-
-/* --- Универсальный раздел страницы --- */
+/* Разделы страницы */
 
 .section {
   max-width: var(--container-width);
   margin: 0 auto var(--space-xl);
 }
 
-.section__title {
+.section h2 {
   margin-top: 0;
 }
 
-/* --- Дополнительный информационный блок --- */
+/* Дополнительный блок */
 
 .aside-info {
   max-width: var(--container-width);
@@ -260,11 +232,7 @@ a:focus-visible {
   background-color: var(--color-surface);
 }
 
-.aside-info__title {
-  margin-top: 0;
-}
-
-/* --- Сетка товаров (Grid) --- */
+/* Сетка товаров */
 
 .products-grid {
   display: grid;
@@ -272,7 +240,7 @@ a:focus-visible {
   gap: var(--space-lg);
 }
 
-/* --- Карточка товара --- */
+/* Карточка товара */
 
 .product-card {
   position: relative;
@@ -301,15 +269,10 @@ a:focus-visible {
   position: absolute;
   top: var(--space-sm);
   right: var(--space-sm);
-  padding: var(--space-xs) var(--space-sm);
-  font-size: 12px;
+  padding: 4px 8px;
   color: var(--color-white);
-  background-color: var(--color-primary);
-  border-radius: var(--radius-sm);
-}
-
-.product-card--discount .product-card__badge {
   background-color: var(--color-danger);
+  border-radius: var(--radius-sm);
 }
 
 .product-card__title {
@@ -336,7 +299,7 @@ a:focus-visible {
   align-self: flex-start;
 }
 
-/* --- Страница каталога (Grid: фильтры + товары) --- */
+/* Страница каталога */
 
 .catalog-layout {
   max-width: var(--container-width);
@@ -345,147 +308,90 @@ a:focus-visible {
   grid-template-columns: 260px 1fr;
   grid-template-areas: "filters products";
   gap: var(--space-lg);
-  align-items: start;
 }
 
 .catalog-filters {
   grid-area: filters;
   position: sticky;
   top: var(--space-md);
-  z-index: var(--z-sticky);
+  align-self: start;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background-color: var(--color-surface);
-}
-
-.catalog-filters__title {
-  margin-top: 0;
 }
 
 .catalog-products {
   grid-area: products;
 }
 
-.catalog-products__title {
-  margin-top: 0;
-}
-
-/* --- Форма фильтров --- */
+/* Форма фильтров */
 
 .filters-form {
   display: grid;
   gap: var(--space-md);
 }
 
-.filters-form__group {
+.filters-form fieldset {
   margin: 0;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
 }
 
-.filters-form__legend {
+.filters-form legend {
   font-weight: 700;
 }
 
-.filters-form__label {
+.filters-form label {
   display: block;
   margin-bottom: var(--space-sm);
 }
 
-.filters-form__input {
+.filters-form input[type="number"] {
   width: 100%;
-  margin-bottom: var(--space-sm);
   padding: 8px 10px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   font: inherit;
 }
 
-.filters-form__input:hover {
-  border-color: var(--color-primary);
-}
-
-.filters-form__input:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 3px;
-}
-
-/* --- Подробная карточка товара (product.html) --- */
-
-.product-details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
-  align-items: start;
-}
-
-.product-details__image {
-  display: block;
-  width: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-}
-
-.product-details__title {
-  margin-top: 0;
-}
-
-.product-details__price {
-  font-size: 24px;
-  font-weight: 700;
-}
-
-/* --- Таблица характеристик --- */
+/* Таблица характеристик */
 
 .product-table {
-  width: 100%;
   border-collapse: collapse;
 }
 
-.product-table__caption {
+.product-table caption {
   margin-bottom: var(--space-sm);
   font-weight: 700;
-  text-align: left;
 }
 
-.product-table__head-cell,
-.product-table__cell {
+.product-table th,
+.product-table td {
   padding: var(--space-sm) var(--space-md);
   border: 1px solid var(--color-border);
   text-align: left;
 }
 
-.product-table__head-cell {
+.product-table th {
   background-color: var(--color-surface);
 }
 
-/* --- Контакты --- */
-
-.contacts-list {
-  padding-left: var(--space-lg);
-}
-
-/* --- Подвал сайта --- */
+/* Подвал сайта */
 
 .site-footer {
   padding: var(--space-lg);
   background-color: var(--color-surface);
 }
 
-.site-footer__inner {
-  max-width: var(--container-width);
-  margin: 0 auto;
-}
-
-/* --- Фиксированная кнопка «Наверх» --- */
+/* Кнопка «Наверх» */
 
 .to-top {
   position: fixed;
   right: var(--space-lg);
   bottom: var(--space-lg);
-  z-index: var(--z-fixed);
+  z-index: 10;
 }
 
 /* ===============================
@@ -500,25 +406,15 @@ a:focus-visible {
 }
 
 .order-dialog::backdrop {
-  background-color: var(--color-overlay);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .order-dialog__title {
   margin-top: 0;
 }
 
-.order-form--page {
-  max-width: 560px;
-}
-
 .order-form__field {
   margin-bottom: var(--space-md);
-}
-
-.order-form__field--checkbox .order-form__label {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
 }
 
 .order-form__label {
@@ -536,11 +432,6 @@ a:focus-visible {
   font: inherit;
 }
 
-.order-form__checkbox {
-  width: auto;
-  margin: 0;
-}
-
 .order-form__input:hover,
 .order-form__select:hover,
 .order-form__textarea:hover {
@@ -549,25 +440,9 @@ a:focus-visible {
 
 .order-form__input:focus-visible,
 .order-form__select:focus-visible,
-.order-form__textarea:focus-visible,
-.order-form__checkbox:focus-visible {
+.order-form__textarea:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
-}
-
-/*
-  Подсветка ошибочных полей.
-  Атрибут aria-invalid добавляется через JavaScript.
-*/
-.order-form__input[aria-invalid="true"],
-.order-form__select[aria-invalid="true"],
-.order-form__textarea[aria-invalid="true"] {
-  border-color: var(--color-danger);
-}
-
-.order-form__checkbox[aria-invalid="true"] {
-  outline: 2px solid var(--color-danger);
-  outline-offset: 2px;
 }
 
 .order-form__hint {
@@ -576,18 +451,23 @@ a:focus-visible {
   color: var(--color-muted);
 }
 
+/*
+  Подсветка ошибочных полей.
+  Атрибут aria-invalid добавляется через JavaScript.
+*/
+[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
 .order-form__actions {
   display: flex;
   gap: var(--space-md);
   margin-top: var(--space-lg);
 }
 
-/*
-  Сообщение об успешной отправке.
-*/
 .success-message {
   max-width: var(--container-width);
-  margin: 0 auto var(--space-lg);
+  margin: var(--space-lg) auto;
   padding: var(--space-md);
   border-left: 4px solid var(--color-success);
   background-color: var(--color-success-bg);
