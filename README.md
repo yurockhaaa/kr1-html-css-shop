@@ -80,6 +80,8 @@ GitHub Pages: https://yurockhaaa.github.io/kr1-html-css-shop/
 - `hero` — первый экран главной страницы;
 - `products-grid` — сетка товаров;
 - `product-card` — карточка товара;
+- `reviews` — блок отзывов;
+- `review-card` — карточка отзыва;
 - `catalog-layout` — структура страницы каталога;
 - `catalog-filters` — фильтры каталога;
 - `order-dialog` — модальное окно заявки;

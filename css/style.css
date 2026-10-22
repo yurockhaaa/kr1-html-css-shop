@@ -31,6 +31,8 @@
 
   /* Размеры */
   --container-width: 1100px;
+  /* Отступ под закреплённую шапку (с запасом на меню в две строки) */
+  --header-offset: 184px;
 }
 
 /* ===============================
@@ -43,6 +45,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-offset) + var(--space-md));
 }
 
 body {
@@ -132,6 +135,9 @@ a:focus-visible {
 /* Шапка сайта */
 
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   background-color: var(--color-surface);
 }
 
@@ -198,6 +204,10 @@ a:focus-visible {
 
 .breadcrumbs__current::before {
   content: " / ";
+  color: var(--color-muted);
+}
+
+.breadcrumbs__separator {
   color: var(--color-muted);
 }
 
@@ -275,6 +285,13 @@ a:focus-visible {
   border-radius: var(--radius-sm);
 }
 
+.product-card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
 .product-card__title {
   margin: 0;
   color: var(--color-text);
@@ -299,6 +316,31 @@ a:focus-visible {
   align-self: flex-start;
 }
 
+/* Отзывы */
+
+.reviews__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.review-card {
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.review-card__text {
+  margin: 0 0 var(--space-sm);
+}
+
+.review-card__author {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
 /* Страница каталога */
 
 .catalog-layout {
@@ -313,7 +355,7 @@ a:focus-visible {
 .catalog-filters {
   grid-area: filters;
   position: sticky;
-  top: var(--space-md);
+  top: calc(var(--header-offset) + var(--space-md));
   align-self: start;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
